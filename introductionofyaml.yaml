@@ -1,0 +1,39 @@
+apiVersion: apps/v1    #---> that will connect with kubernetes api resources 
+kind: Deployment       # what resource you want to manage 
+metadata:              # keep the information of resource like name lables and namespaces 
+  name: myapp
+spec:                  # sepc is collect resources specification like secletor labels affinity template rolling etc.  
+  selector:
+    matchLabels:
+      app: myapp
+  template:
+    metadata:
+      labels:
+        app: myapp
+    spec:             # spceification of containers volumes   
+      containers:
+      - name: myapp
+        image: <Image>
+        resources:        # container limits on cpu and ram 
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:              # container port numbers 
+        - containerPort: <Port>
+
+
+##############
+kind: Service            
+apiVersion: apps/v1
+metadata:
+  name:  Service Name
+spec:
+  selector:
+    app:  Selector Label
+  type:  LoadBalancer | ClusterIP | NodePort
+  ports:
+  - name:  name-of-the-port
+    port:  80
+    targetPort:  8080
+
+

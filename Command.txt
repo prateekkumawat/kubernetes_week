@@ -1,0 +1,13 @@
+# Namespace releated commands
+$ kubectl get ns / Namespace
+$ kubectl create ns namespace_name 
+$ kubectl get pod -n namespace_name 
+$ kubectl get pod -A   ### details of all namespace 
+
+# apply yaml files on kubernetes 
+kubectl apply -f yaml_file_name
+kubectl create -f yaml_file_name 
+kubectl replace -f yaml_file_name 
+kubectl delete -f yaml_file_name 
+kubectl apply -k dir_name_of yaml
+

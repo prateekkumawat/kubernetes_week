@@ -1,0 +1,15 @@
+# Kubernetes Namespace :--->  to achive resource isolation and project so we used Namespace. 
+Namespaces are intended for use in environments with many users spread across multiple teams, or projects.
+Kubernetes having namespace in which if you not specifed resource with namespace its auto created that is default. 
+
+kubeernetes using two method: 
+1. imperative : using cli manage resources
+2 Declerative : using yaml and api code 
+
+# kubernetes Pod : smallest unit that manage containers in kubeernetes
+# kubernetes Deployment: management way of pod that give scale rollback and update facilities
+# kubernetes Deamonsets: ensure pod is running on every node usecase logging monitor storage network 
+# kubernetes replicasets: provide facilities of scale pod default used with Deployment
+# kubeernetes statefulsetes: database manage stes or uninq identity in netwok 
+# kubernetes jobs : run batch jobs 
+# cron jobs : schdule 
