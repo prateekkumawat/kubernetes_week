@@ -1,0 +1,43 @@
+# create namespace 
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: pod-example
+  labels: 
+    app: pod-example
+
+# crate a pod yaml 
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-example1
+  labels:
+    app: pod-example
+spec:
+  containers:
+  - name: pod-example-container
+    image: nginx:latest
+    resources:
+      requests:
+         memory: "50Mi"
+         cpu: "100m"
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+    ports:
+      - containerPort: 80
+
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: pod-example1-svc
+spec:
+  selector:
+    app: pod-example
+  type: ClusterIP
+  ports:
+  - name: pod-example-port
+    port:  81
+    targetPort: 80
