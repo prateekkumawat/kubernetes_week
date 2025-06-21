@@ -12,7 +12,7 @@ apiVersion: v1
 kind: Pod
 metadata:
   name: pod-example1
-  namespcae: pod-example
+  namespace: pod-example
   labels:
     app: pod-example
 spec:
