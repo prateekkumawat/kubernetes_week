@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deamonsets
+metadata:
+  name: ds-example
+  namespace: pod-example
+  labels: 
+    app: ds-app
+spec:
+  selector:
+    matchLabels:
+      app: ds-app
+  template:
+    metadata:
+      labels:
+        app: ds-app
+    spec:
+      containers:
+      - name: ds-example
+        image: httpd:latest
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 80
+
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: ds-exaples-svc
+  namespace: pod-example
+  labels: 
+    app: ds-app
+spec:
+  selector:
+    app: ds-app
+  type: ClusterIP
+  ports:
+  - name: ds-port-support
+    port:  8080
+    targetPort:  80
