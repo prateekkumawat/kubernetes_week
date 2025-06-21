@@ -1,0 +1,50 @@
+#### create a deployment exampels 
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deployment-example 
+  namespace: pod-example
+  labels: 
+    app: pod-example
+    name: deployment-example
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+       app: pod-example
+       name: deployment-example
+  template:
+    metadata:
+      labels:
+        app: pod-example
+        name: deployment-example
+    spec:
+      containers:
+      - name: deploymets-app-container
+        image: nginx:latest
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 80
+
+# create a deployment svc 
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: deployment-example
+  namespace: pod-example
+  labels: 
+    app: pod-example
+    name: deployment-example
+
+spec:
+  selector:
+    app: pod-example
+    name: deployment-example
+  type: ClusterIP
+  ports:
+  - port:  80
+    targetPort: 80
