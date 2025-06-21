@@ -12,6 +12,7 @@ apiVersion: v1
 kind: Pod
 metadata:
   name: pod-example1
+  namespcae: pod-example
   labels:
     app: pod-example
 spec:
@@ -33,6 +34,7 @@ kind: Service
 apiVersion: v1
 metadata:
   name: pod-example1-svc
+  namespace: pod-example
 spec:
   selector:
     app: pod-example
