@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: docker-webapp
+  labels: 
+    purpose: dockerimage-registry-pull
+    app: docker-webapp
+spec:
+  selector:
+    matchLabels:
+      app: docker-webapp
+      purpose: dockerimage-registry-pull
+  template:
+    metadata:
+      labels:
+        app: docker-webapp
+        purpose: dockerimage-registry-pull
+    spec:
+      containers:
+      - name: docker-webapp
+        image: prateekkumawat/infra:webapp
+        imagePullPolicy: Always
+        resources:
+          requests: 
+            memory: "200Mi"
+            cpu: "500m"
+          limits:
+            memory: "500Mi"
+            cpu: "1000m"
+        ports:
+        - containerPort: 80
+      imagePullSecrets:
+        - name: docker-login
