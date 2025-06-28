@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: docker-image-pod
+  labels:
+    name: docker-image-pod
+spec:
+  containers:
+  - name: docker-image-pod
+    image: prateekkumawat/infra:webapp
+    resources:
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+    ports:
+      - containerPort: 80
