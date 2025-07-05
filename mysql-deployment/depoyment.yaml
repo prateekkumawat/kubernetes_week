@@ -33,10 +33,7 @@ spec:
                 name: mysql-basic-auth
                 key: password
           - name: MYSQL_USER
-            valueFrom:
-              secretKeyRef:
-                name: mysql-basic-auth
-                key: username
+            value: prateek
           - name: MYSQL_PASSWORD
             valueFrom:
               secretKeyRef:
