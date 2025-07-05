@@ -29,17 +29,20 @@ spec:
         env: 
           - name: MYSQL_ROOT_PASSWORD
             # value: redhat
-            secretKeyRef:
-              name: mysql-basic-auth
-              key: password
+            valueFrom:
+              secretKeyRef:
+                name: mysql-basic-auth
+                key: password
           - name: MYSQL_USER
             # value: prateek
-            secretKeyRef:
-              name: mysql-basic-auth
-              key: username
+            valueFrom:
+              secretKeyRef:
+                name: mysql-basic-auth
+                key: username
           - name: MYSQL_PASSWORD
             # value: redhat
-            secretKeyRef:
-              name: mysql-basic-auth
-              key: password
+            valueFrom:
+              secretKeyRef:
+                name: mysql-basic-auth
+                key: password
           
