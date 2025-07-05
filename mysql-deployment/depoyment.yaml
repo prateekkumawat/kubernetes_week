@@ -28,21 +28,19 @@ spec:
         - containerPort: 3306
         env: 
           - name: MYSQL_ROOT_PASSWORD
-            # value: redhat
             valueFrom:
               secretKeyRef:
                 name: mysql-basic-auth
                 key: password
           - name: MYSQL_USER
-            # value: prateek
             valueFrom:
               secretKeyRef:
                 name: mysql-basic-auth
                 key: username
           - name: MYSQL_PASSWORD
-            # value: redhat
             valueFrom:
               secretKeyRef:
                 name: mysql-basic-auth
                 key: password
           
+       
