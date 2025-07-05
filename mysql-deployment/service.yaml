@@ -13,4 +13,5 @@ spec:
   - name: mysql-svc-port
     port: 3306
     targetPort: 3306
+    nodePort: 31940
     
