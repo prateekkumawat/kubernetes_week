@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql-server
+  namespace: mysql-server
+  labels:
+    app: database
+spec:
+  selector:
+    matchLabels:
+      app: database
+  template:
+    metadata:
+      labels:
+        app: database
+    spec:
+      containers:
+      - name: mysql-server
+        image: mysql:latest
+        resources:
+          requests:
+            memory: "500Mi"
+            cpu: "500m"
+          limits:
+            memory: "1500Mi"
+            cpu: "1"
+        ports:
+        - containerPort: 3306
+        env: 
+          - name: MYSQL_ROOT_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: mysql-basic-auth
+                key: password
+          - name: MYSQL_USER
+            value: prateek
+          - name: MYSQL_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: mysql-basic-auth
+                key: password
+        volumeMounts:
+        - name: datapath
+          mountPath: /var/lib/mysql/ 
+      volumes:
+      - name: datapath
+        hostPath:
+          path: /mnt/data
+          type: Directory
+
+       
