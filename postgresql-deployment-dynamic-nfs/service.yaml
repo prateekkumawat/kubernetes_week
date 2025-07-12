@@ -1,0 +1,17 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: psql-server-svc
+  namespace: psql-server
+  labels:
+    app: database
+spec:
+  selector:
+    app: database
+  type: NodePort
+  ports:
+  - name: psql-svc-port
+    port: 5431
+    targetPort: 5432
+    nodePort: 31930
+    

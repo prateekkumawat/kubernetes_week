@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: psql-server
+  namespace: psql-server
+  labels:
+    app: database
+spec:
+  selector:
+    matchLabels:
+      app: database
+  template:
+    metadata:
+      labels:
+        app: database
+    spec:
+      containers:
+      - name: psql-server
+        image: postgres:14.18-bookworm
+        resources:
+          requests:
+            memory: "500Mi"
+            cpu: "500m"
+          limits:
+            memory: "1500Mi"
+            cpu: "1"
+        ports:
+        - containerPort: 5432
+        env: 
+          - name: POSTGRES_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: psql-basic-auth
+                key: password
+        volumeMounts:
+        - name: datapath
+          mountPath: /var/lib/postgresql/data
+      volumes:
+      - name: datapath
+        persistentVolumeClaim:
+          claimName: psql-data-0
+
+       

@@ -1,0 +1,19 @@
+# before deploy storage class need to setup nfs-csi-driver first using below link
+# https://github.com/kubernetes-csi/csi-driver-nfs/blob/master/docs/install-csi-driver-master.md
+---
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: central-data-store
+provisioner: nfs.csi.k8s.io
+parameters:
+  server: 172.31.38.139
+  share: /data/storagedynamic
+  # csi.storage.k8s.io/provisioner-secret is only needed for providing mountOptions in DeleteVolume
+  # csi.storage.k8s.io/provisioner-secret-name: "mount-options"
+  # csi.storage.k8s.io/provisioner-secret-namespace: "default"
+reclaimPolicy: Delete
+volumeBindingMode: WaitForFirstConsumer 
+allowVolumeExpansion: true
+mountOptions:
+  - nfsvers=4.1
