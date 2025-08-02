@@ -1,0 +1,13 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: ms1-app-svc
+  namespace: ms1
+spec:
+  selector:
+    app.kubernetes.io/name: ms1-app
+  type: ClusterIP
+  ports:
+  - name:  name-of-the-port
+    port:  80
+    targetPort: 80
