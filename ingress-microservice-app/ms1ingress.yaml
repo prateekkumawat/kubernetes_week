@@ -10,7 +10,7 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-  - hosts: villa.ocelottraining.com
+  - host: villa.ocelottraining.com
     http:
       paths:
       - pathType: Prefix
