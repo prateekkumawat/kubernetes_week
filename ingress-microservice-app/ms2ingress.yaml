@@ -1,22 +1,22 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: ms1-app-ing
-  namespace: ms1
+  name: ms2-app-ing
+  namespace: mysql-server
   labels:
-    app.kubernetes.io/name: ms1-app
+    app: database
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   ingressClassName: nginx
   rules:
-  - hosts: villa.ocelottraining.com
+  - hosts: phpmyadmin.ocelottraining.com
     http:
       paths:
       - pathType: Prefix
         path: /
         backend:
           service:
-            name: ms1-app-svc
+            name: phpmyadmin-svc
             port: 
               number: 80
