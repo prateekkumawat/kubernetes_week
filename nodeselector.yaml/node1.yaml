@@ -1,0 +1,22 @@
+# kubectl get node --show-labels  // showlabels
+#kubectl label node ip-172-31-15-130.ap-south-2.compute.internal disk=ec2   // labels apply 
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: myapp
+  labels:
+    app.kubernetes.io/name: myapp
+spec:
+  containers:
+  - name: myapp
+    image: nginx
+    resources:
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+    ports:
+      - containerPort: 80
+  nodeSelector: 
+    disk: ec2
+ 
